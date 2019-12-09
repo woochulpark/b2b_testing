@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ </head>
+ <body>
+    <table>
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+    </table>
+ </body>
+ <script type="text/javascript">
+    $('input').on('paste', function(e){
+    var $this = $(this);
+    
+    var tb_cnt = $this.closest('table');
+    var bbb = tb_cnt.attr('id');
+    var aaa = $('#'+bbb+' td').length;
+    //첫째줄 td 개수 alert($('#'+bbb).find('tr:eq(0) td').length);
+    
+    var ctd = $this.closest('td').index() + 1; // index는 0부터 시작이라 + 1시켜줘야 함.
+    alert(ctd);
+    return false;
+    
+    $.each(e.originalEvent.clipboardData.items, function(i, v){
+        if (v.type === 'text/plain'){
+            v.getAsString(function(text){
+                var x = $this.closest('td').index(),
+                    y = $this.closest('tr').index(),
+                    obj = {};
+                text = text.trim('\r\n');
+                $.each(text.split('\r\n'), function(i2, v2){
+                    $.each(v2.split('\t'), function(i3, v3){
+                        var row = y+i2, col = x+i3;
+                        obj['cell-'+row+'-'+col] = v3;
+                        $this.closest('table').find('tr:eq('+row+') td:eq('+col+') input').val(v3);
+                    });
+                });
+                //$('div').text(JSON.stringify(obj));
+            });
+        }
+    });
+   // return false;
+   
+});
+ </script>
+</html>
