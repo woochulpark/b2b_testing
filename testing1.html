@@ -1,0 +1,74 @@
+function chk_col(mxcol, curcol){
+	var chk_cnt = 0;
+  for(i=curcol; i < mxcol; i++){
+  	if($this.closest('table').find('tr:eq(0) td:eq('+i+') input').length > 0){
+    	chk_cnt++;
+    }  
+  }
+  return chk_cnt;
+}
+
+$('input').on('paste', function(e){
+    var $this = $(this);
+    var to_cnt = $this.closest('table');
+    var h_cnt = $(to_cnt).find('tr:eq(0) td').length;
+    var v_cnt = $(to_cnt).find('tr').length;
+    var prev_cnt;
+    $.each(e.originalEvent.clipboardData.items, function(i, v){
+        if (v.type === 'text/plain'){
+            v.getAsString(function(text){
+                var x = $this.closest('td').index(),
+                    y = $this.closest('tr').index(),                   
+                    obj = {};
+                    var  prt_y = 0;                   
+                    var ava_col = $(to_cnt).find('tr:eq('+y+') td input').length;
+                    var ava_row = v_cnt - (y + 1);
+                    alert(chk_col(h_cnt, (x+1)));
+                    text = text.trim('\r\n');
+                    var col_text = text.split('\r\n');
+                    var row_text = col_text[0].split('\t');
+                    if(col_text < ava_row && row_text < ava_col){
+                    	alert('복사할 내용이 입력보다 큽니다.');
+                      return false;
+                    }
+                    //alert(col_text.length);
+                   
+                    
+                 for(var i=y; i<v_cnt; i++){
+                 			
+                      var prt_x = 0;
+                 	for(var k=x; k<h_cnt; k++){
+                  		
+                  var row = i, col=k;
+                  	var chk_input = $this.closest('table').find('tr:eq('+row+') td:eq('+col+') input').length;
+                  	prev_cnt = prt_x;
+                  	if(chk_input < 1){
+                    	col = col + 1;
+                      prev_cnt = prt_x - 1;
+                    	continue;
+                    }
+                  	obj['cell-'+row+'-'+col] = '바보 - prt_y : '+prt_y+' - prt_x : '+prt_x;
+                    $this.closest('table').find('tr:eq('+row+') td:eq('+col+') input').val('v3'+prev_cnt+"prt_y"+prt_y);
+                    prt_x++;
+                  } 
+                  prt_y++;
+                 }	   
+                    /*
+                text = text.trim('\r\n');
+                $.each(text.split('\r\n'), function(i2, v2){
+                    $.each(v2.split('\t'), function(i3, v3){
+                        var row = y+i2, col = x+i3;
+                        obj['cell-'+row+'-'+col] = v3;
+                        $this.closest('table').find('tr:eq('+row+') td:eq('+col+') input').val(v3);
+                    });
+                });
+                $('div').text(JSON.stringify(obj));
+                */
+                $('div').text(JSON.stringify(obj));
+            });
+        }
+    });
+    return false;
+   
+});
+

@@ -61,8 +61,8 @@
     //첫째줄 td 개수 alert($('#'+bbb).find('tr:eq(0) td').length);
     
     var ctd = $this.closest('td').index() + 1; // index는 0부터 시작이라 + 1시켜줘야 함.
-    alert(ctd);
-    return false;
+    //alert(ctd);
+    //return false;
     
     $.each(e.originalEvent.clipboardData.items, function(i, v){
         if (v.type === 'text/plain'){
