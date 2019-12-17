@@ -8,43 +8,46 @@
   <meta name="Description" content="">
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <style>
+      td:nth-child(2){width:10em;}
+  </style>
  </head>
  <body>
     <table>
         <tr>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
+            <td><input type="text" name="age[]"></td>
+            <td>s</td>
+            <td><input type="text" name="nation[]"></td>
+            <td><input type="text" name="hp[]"></td>
+            <td><input type="text" name="email[]"></td>
         </tr>
         <tr>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
+            <td><input type="text" name="age[]"></td>
+            <td></td>
+            <td><input type="text" name="nation[]"></td>
+            <td><input type="text" name="hp[]"></td>
+            <td><input type="text" name="email[]"></td>
         </tr>
         <tr>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
+            <td><input type="text" name="age[]"></td>
+            <td></td>
+            <td><input type="text" name="nation[]"></td>
+            <td><input type="text" name="hp[]"></td>
+            <td><input type="text" name="email[]"></td>
         </tr>
         <tr>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
+            <td><input type="text" name="age[]"></td>
+            <td></td>
+            <td><input type="text" name="nation[]"></td>
+            <td><input type="text" name="hp[]"></td>
+            <td><input type="text" name="email[]"></td>
         </tr>
         <tr>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
+            <td><input type="text" name="age[]"></td>
+            <td></td>
+            <td><input type="text" name="nation[]"></td>
+            <td><input type="text" name="hp[]"></td>
+            <td><input type="text" name="email[]"></td>
         </tr>
     </table>
  </body>
@@ -77,10 +80,35 @@
                 });
                 //$('div').text(JSON.stringify(obj));
             });
-        }
+        }ddddd
     });
    // return false;
    
 });
  </script>
+ <!--
+     클립보드 script
+
+1. input에 붙여넣기
+2. 클립보드 데이터 each 돌리기
+3. 데이터 타입 text 체크
+4. 에디터 문자 열로 받기
+5-1. 붙여넣기 한 input box 위치 찾기 ( 위치에서 입력값을 지정 할것이기때문에
+아래 쪽으로 내려갈 데이터는 붙여넣기 한 input box 아래로 시작-name이나 id값 확인하고 옆으로 
+어떤 input이 올지도 확인 - 분기 입력받을 input box 지정
+)
+6-1. input box 수평값을 찾는다 (데이터 수평값과 비교하고 true 일 경우 tr, td 좌표값을 생성 해서 데이터 값을 넣을
+좌표를 잡는다.)
+7-1. 좌표값을 배열에 집어넣는다.
+
+5-2. 데이터 수평값을 찾는다 (입력 받을 input 수평값보다 많으면 alert 후 false)
+
+6-2. 데이터를 수평, 수직으로 구분해서 배열에 집어넣어논다. 수평 숫자 만큼 배열을 만들어 
+수직데이터를 집어넣는 방식
+
+7. 좌표 배열 값으로 each 돌려서 데이터 
+
+전체 수평 수직 값(td)을 구한 후 paste된 input값에서 좌표를 구해 값을 빼면 clipboard 수평값 구하기 쉽다.
+
+ -->
 </html>
