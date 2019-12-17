@@ -111,7 +111,7 @@
 $(document).ready(function(){
     $('#plusbt').on('click',function(){
         
-        var copy_tr = $('#b2b_multi').find('tr:lt(3)').clone();
+        var copy_tr = $('#b2b_multi').find('tbody tr:lt(3)').clone();
         copy_tr.find('input').val('');
        copy_tr.find('input[type="checkbox"]').prop('checked',false);
         $('#b2b_multi').append(copy_tr);
@@ -168,7 +168,7 @@ $(document).ready(function(){
             var repair_tr = ch_re_cnt;
            
             for(i=0; i < repair_tr; i++){
-                var copy_cre_tr = $('#b2b_multi').find('tr:eq(0)').clone();
+                var copy_cre_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
                 copy_cre_tr.find('input').val('');
                 copy_cre_tr.find('input[type="checkbox"]').prop('checked',false);
                 $('#b2b_multi').append(copy_cre_tr);    
@@ -183,7 +183,7 @@ function prt_no(){
     var cnt= 1;
     $('#b2b_multi tr').each(function(ind){
        
-        $('#b2b_multi tr:eq('+ind+') td:eq(2)').text(cnt);
+        $('#b2b_multi tbody tr:eq('+ind+') td:eq(1)').text(cnt);
         cnt++;
     });
 
