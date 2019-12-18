@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <script type="text/javascript" src="/js/jquery.1.12.4.min.js"></script>
+  <style src="/css/bootstrap.min.css"></style>  
+  <style>
+      input,td {width:12.8em;}      
+  </style>
+ </head>
+ <body>
+  <div>
+      <table id="b2b_multi">
+          <thead>
+              <th>선택</th>
+              <th>번호</th>
+              <th>이름</th>
+              <th>영문이름</th>
+              <th>주민등록번호</th>
+              <th>(만)나이</th>
+              <th>플랜</th>
+              <th>보험료</th>
+          </thead>
+          <tbody>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>1</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td> 
+                <td>2</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>3</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>4</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>5</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>6</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>7</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>    
+          </tbody>      
+      </table>
+  </div>
+  <div>
+      <div class="col-sm-2"><button id="plusbt">증가</button></div>
+      <div class="col-sm-2"><button id="allbt">전체선택</button></div>
+      <div class="col-sm-2"><button id="allnbt">전체해제</button></div>
+      <div class="col-sm-2"><button id="seldbt">선택삭제</button></div>
+  </div>
+ </body>
+<script type="text/javascript">
+
+    $('input').on('paste',function(e){
+        var $this= $(this);
+        var pasted;
+        var cccc;
+        if (window.clipboardData && window.clipboardData.getData) { 
+    /** IEの場合 */
+    pasted = window.clipboardData.getData('Text');
+    var bbbb = pasted.split('\r\n');
+    cccc = bbbb[0].split('\t');
+    
+  } else if (e.originalEvent.clipboardData.getData) {
+    /** それ以外の場合 */
+    
+    pasted = e.originalEvent.clipboardData.getData('text/plain');
+    var aaaa = pasted.split('\r\n');
+    cccc = aaaa[0].split('\t');
+    console.log(cccc);
+    e.stopPropagation();
+    e.preventDefault();    
+    
+  }
+
+  console.log(cccc);
+
+    });
+</script>
+</html>
