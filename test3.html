@@ -125,13 +125,21 @@
     pasted = e.originalEvent.clipboardData.getData('text/plain');
     var aaaa = pasted.split('\r\n');
     cccc = aaaa[0].split('\t');
-    console.log(cccc);
+    //console.log(cccc);
     e.stopPropagation();
     e.preventDefault();    
     
   }
-
-  console.log(cccc);
+  var kk = $this.closest('td').index();
+  var mm = $this.closest('td').length;
+  console.log("선택된 td주소 - input:"+kk+"클립보드 col수"+cccc.length);
+ var limit_td = 4;
+  if((kk+(cccc.length - 1)) > limit_td){
+    alert('복사할 데이터가 셀보다 큽니다.');
+    return false;
+  } else {
+      
+  }
 
     });
 </script>
