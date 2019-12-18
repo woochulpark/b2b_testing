@@ -10,7 +10,7 @@
   <script type="text/javascript" src="/js/jquery.1.12.4.min.js"></script>
   <style src="/css/bootstrap.min.css"></style>  
   <style>
-      input,td {width:12.8em;}
+      input,td {width:12.8em;}      
   </style>
  </head>
  <body>
@@ -177,6 +177,25 @@ $(document).ready(function(){
         }
         prt_no();
     });
+
+    $('input').on('paste', function(e){
+        alert('되냐');
+        var $this = $(this);        
+        var copy_this = $this.closest('td').index();
+        var limit_col = 4;
+        var cnt_limit = 0;
+        for(i=copy_this; i <= limit_col; i++){
+            cnt_limit++;
+        }
+        
+        var clipCnt = cnt_clip(e);
+        console.log(clipCnt);
+        if(clipCnt > cnt_limit){
+            alert('복사할 데이터가 영역보다 큽니다.');
+            return false;
+        }
+    });
+
 });
 
 function prt_no(){
@@ -188,6 +207,30 @@ function prt_no(){
         cnt++;
     });
 
+}
+
+function cnt_clip(kind){
+    //var cp_column = new Array();
+    var cp_hcolumn;
+    var yarr;
+    var harr;
+    var aaa=0;
+    $.each(kind.originalEvent.clipboardData.items, function(ind, val){
+        if(val.type === 'text/plain'){
+            val.getAsString(function(text){
+                
+                text = text.trim('\r\n');
+                yarr = text.split('\r\n');
+                harr = yarr[0].split('\t');
+                //console.log("row : "+yarr.length+" col : "+harr.length);               
+                alert(harr.length);
+                aaa = harr.length;
+                return aaa;
+            });
+        }
+        
+    });    
+    
 }
 </script>
 </html>
