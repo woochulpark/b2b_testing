@@ -32,8 +32,8 @@
                 <td>1</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="juminno[]" value="561024-2068820"></td>
+                <td><input type="hidden" name="hage[]"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
@@ -42,8 +42,8 @@
                 <td>2</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="juminno[]" value="590305-1036114"></td>
+                <td><input type="hidden" name="hage[]"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
@@ -52,8 +52,8 @@
                 <td>3</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="juminno[]" value="870627-2074513"></td>
+                <td><input type="hidden" name="hage[]"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
@@ -62,8 +62,8 @@
                 <td>4</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="juminno[]" value="560416-1178318"></td>
+                <td><input type="hidden" name="hage[]"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
@@ -72,8 +72,8 @@
                 <td>5</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="juminno[]" value="640630-2163115"></td>
+                <td><input type="hidden" name="hage[]"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
@@ -82,8 +82,8 @@
                 <td>6</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="juminno[]" value="640707-2351818"></td>
+                <td><input type="hidden" name="hage[]"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
@@ -92,8 +92,8 @@
                 <td>7</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="juminno[]" value="600715-2691718"></td>
+                <td><input type="hidden" name="hage[]"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>    
@@ -105,7 +105,7 @@
       <div class="col-sm-2"><button id="allbt">전체선택</button></div>
       <div class="col-sm-2"><button id="allnbt">전체해제</button></div>
       <div class="col-sm-2"><button id="seldbt">선택삭제</button></div>
-      <div class="col-sm-2"><button id="seldbt">선택삭제</button></div>
+      <div class="col-sm-2"><button id="calbt">나이계산</button></div>
   </div>
  </body>
 <script type="text/javascript">
@@ -115,6 +115,8 @@ $(document).ready(function(){
         var copy_tr = $('#b2b_multi').find('tbody tr:lt(3)').clone();
         copy_tr.find('input').val('');
        copy_tr.find('input[type="checkbox"]').prop('checked',false);
+       copy_tr.find('input[name="juminno[]"]').val('');
+       copy_tr.find('td').eq(5).contents().filter(function(){return this.nodeType == 3}).remove();
         $('#b2b_multi').append(copy_tr);
         prt_no();
     });
@@ -147,6 +149,7 @@ $(document).ready(function(){
             $('input[name="nob[]"]').each(function(ind,val){           
                 if($('input[name="nob[]"]').eq(ind).is(':checked')){           
                     $('input[name="nob[]"]').closest('tr').eq(ind).find('input').val('');
+                    $('input[name="nob[]"]').closest('tr').eq(ind).find('td').eq(5).contents().filter(function(){return this.nodeType == 3}).remove();
                     $('input[name="nob[]"]').eq(ind).prop('checked',false);
                 }        
             });
@@ -162,7 +165,7 @@ $(document).ready(function(){
             });
             $('input[name="nob[]"]').each(function(ind,val){      
                 if($('input[name="nob[]"]').eq(ind).is(':checked')){                
-                    $('input[name="nob[]"]:checked').closest('tr').remove();         
+                    $('input[name="nob[]"]:checked').closest('tr').remove();
                 }   
             });    
             
@@ -171,12 +174,40 @@ $(document).ready(function(){
             for(i=0; i < repair_tr; i++){
                 var copy_cre_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
                 copy_cre_tr.find('input').val('');
+                copy_cre_tr.find('td').eq(5).contents().filter(function(){return this.nodeType == 3}).remove();
                 copy_cre_tr.find('input[type="checkbox"]').prop('checked',false);
                 $('#b2b_multi').append(copy_cre_tr);    
             }
 
         }
         prt_no();
+    });
+
+    $('#calbt').on('click',function(){
+        var cage;
+        $('input[name="juminno[]"]').each(function(ind, vale){
+            cage = $(vale).attr('value');
+            //var result_age = cage.split("-");
+
+            $.post('./age_cal.php', {tyear:cage}, function (data){			
+			if(data.msg){			
+				//location.replace(data.Locate);
+                console.log(data.msg['1']);
+                $('input[name="juminno[]').eq(ind).closest('td').next('td').contents().filter(function(){return this.nodeType == 3}).remove();    
+
+                $('input[name="juminno[]').eq(ind).closest('td').next('td').append(data.msg['1']);    
+                $('input[name="juminno[]').eq(ind).closest('td').next('td').children('input').val(data.msg['1']); 
+			} else {
+				alert('안됐다');
+			}			
+
+            },"json").done(function(){
+            
+            
+            }).fail(function(){
+            
+            });
+        });
     });
 
     $('input').on('paste', function(e){
