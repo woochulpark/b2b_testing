@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <script type="text/javascript" src="/js/jquery.1.12.4.min.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"> 
+  <style>
+      input,td {width:12.8em;}      
+  </style>
+ </head>
+ <body>
+  <div>
+      <table id="b2b_multi" class="table">
+          <thead>
+              <th>선택</th>
+              <th>번호</th>
+              <th>이름</th>
+              <th>영문이름</th>
+              <th>주민등록번호</th>
+              <th>(만)나이</th>
+              <th>플랜</th>
+              <th>보험료</th>
+          </thead>
+          <tbody>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>1</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td> 
+                <td>2</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>3</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>4</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>5</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>6</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="nob[]"></td>
+                <td>7</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>    
+          </tbody>      
+      </table>
+  </div>
+  <div class="row">
+      <div class="col-sm-2"><button id="plusbt">증가</button></div>
+      <div class="col-sm-2"><button id="allbt">전체선택</button></div>
+      <div class="col-sm-2"><button id="allnbt">전체해제</button></div>
+      <div class="col-sm-2"><button id="seldbt">선택삭제</button></div>
+      <div class="col-sm-2"><button id="seldbt">선택삭제</button></div>
+  </div>
+ </body>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#plusbt').on('click',function(){
+        
+        var copy_tr = $('#b2b_multi').find('tbody tr:lt(3)').clone();
+        copy_tr.find('input').val('');
+       copy_tr.find('input[type="checkbox"]').prop('checked',false);
+        $('#b2b_multi').append(copy_tr);
+        prt_no();
+    });
+
+    $('#allbt').on('click',function(){
+        $('input[name="nob[]"]').prop('checked', true);
+    });
+
+    $('#allnbt').on('click',function(){
+        $('input[name="nob[]"]').prop('checked', false);
+    });
+
+    $('#seldbt').on('click',function(){
+        var t_cnt = $('input[name="nob[]"]').length;
+        var ch_t_cnt = 0;
+        var ch_re_cnt = 0;
+        $('input[name="nob[]"]').each(function(ind,val){           
+            if($('input[name="nob[]"]').eq(ind).is(':checked')){                
+                ch_t_cnt++;                    
+            }        
+        });
+
+        if(ch_t_cnt < 1){
+            alert('선택된 데이터가 없습니다.');
+            return false;
+        }
+
+        if(ch_t_cnt === t_cnt){
+            alert('전체삭제');
+            $('input[name="nob[]"]').each(function(ind,val){           
+                if($('input[name="nob[]"]').eq(ind).is(':checked')){           
+                    $('input[name="nob[]"]').closest('tr').eq(ind).find('input').val('');
+                    $('input[name="nob[]"]').eq(ind).prop('checked',false);
+                }        
+            });
+        } else {
+            var remove_no = new Array();
+            $('input[name="nob[]"]').each(function(ind,val){  
+                
+                if($('input[name="nob[]"]').eq(ind).is(':checked')){                     
+                    ch_re_cnt++;  
+                    //$('input[name="nob[]"]:checked').closest('tr').remove();
+                    remove_no.push(ind); 
+                }        
+            });
+            $('input[name="nob[]"]').each(function(ind,val){      
+                if($('input[name="nob[]"]').eq(ind).is(':checked')){                
+                    $('input[name="nob[]"]:checked').closest('tr').remove();         
+                }   
+            });    
+            
+            var repair_tr = ch_re_cnt;
+           
+            for(i=0; i < repair_tr; i++){
+                var copy_cre_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
+                copy_cre_tr.find('input').val('');
+                copy_cre_tr.find('input[type="checkbox"]').prop('checked',false);
+                $('#b2b_multi').append(copy_cre_tr);    
+            }
+
+        }
+        prt_no();
+    });
+
+    $('input').on('paste', function(e){
+        alert('되냐');
+        var $this = $(this);        
+        var copy_this = $this.closest('td').index();
+        var limit_col = 4;
+        var cnt_limit = 0;
+        for(i=copy_this; i <= limit_col; i++){
+            cnt_limit++;
+        }
+        
+        var clipCnt = cnt_clip(e);
+        console.log(clipCnt);
+        if(clipCnt > cnt_limit){
+            alert('복사할 데이터가 영역보다 큽니다.');
+            return false;
+        }
+    });
+
+});
+
+function prt_no(){
+    //table tr이 증가하면 숫자를 다시 지정한다.
+    var cnt= 1;
+    $('#b2b_multi tr').each(function(ind){
+       
+        $('#b2b_multi tbody tr:eq('+ind+') td:eq(1)').text(cnt);
+        cnt++;
+    });
+
+}
+
+function cnt_clip(kind){
+    //var cp_column = new Array();
+    var cp_hcolumn;
+    var yarr;
+    var harr;
+    var aaa=0;
+    $.each(kind.originalEvent.clipboardData.items, function(ind, val){
+        if(val.type === 'text/plain'){
+            val.getAsString(function(text){
+                
+                text = text.trim('\r\n');
+                yarr = text.split('\r\n');
+                harr = yarr[0].split('\t');
+                //console.log("row : "+yarr.length+" col : "+harr.length);               
+                alert(harr.length);
+                aaa = harr.length;
+                return aaa;
+            });
+        }
+        
+    });    
+    
+}
+</script>
+</html>
