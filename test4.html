@@ -112,12 +112,15 @@
 $(document).ready(function(){
     $('#plusbt').on('click',function(){
         
-        var copy_tr = $('#b2b_multi').find('tbody tr:lt(3)').clone();
+        //var copy_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
+        for(i=0; i < 30; i++){
+            var copy_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
         copy_tr.find('input').val('');
        copy_tr.find('input[type="checkbox"]').prop('checked',false);
-       copy_tr.find('input[name="juminno[]"]').val('');
+       copy_tr.find('input[name="juminno[]"]').val();
        copy_tr.find('td').eq(5).contents().filter(function(){return this.nodeType == 3}).remove();
         $('#b2b_multi').append(copy_tr);
+    }
         prt_no();
     });
 
