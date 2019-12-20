@@ -8,7 +8,7 @@
   <meta name="Description" content="">
   <title>Document</title>
   <script type="text/javascript" src="/js/jquery.1.12.4.min.js"></script>
-  <style src="/css/bootstrap.min.css"></style>  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <style>
       input,td {width:12.8em;}      
   </style>
@@ -100,6 +100,7 @@
           </tbody>      
       </table>
   </div>
+  <div id="viewprt"></div>
   <div>
       <div class="col-sm-2"><button id="plusbt">증가</button></div>
       <div class="col-sm-2"><button id="allbt">전체선택</button></div>
@@ -113,18 +114,22 @@
         var $this= $(this);
         var pasted;
         var cccc;
+        var bbbb;
         if (window.clipboardData && window.clipboardData.getData) { 
     /** IEの場合 */
     pasted = window.clipboardData.getData('Text');
-    var bbbb = pasted.split('\r\n');
+    pasted = pasted.trim('\r\n');
+    bbbb = pasted.split('\r\n');
     cccc = bbbb[0].split('\t');
-    
+    e.stopPropagation();
+    e.preventDefault();   
   } else if (e.originalEvent.clipboardData.getData) {
     /** それ以外の場合 */
     
     pasted = e.originalEvent.clipboardData.getData('text/plain');
-    var aaaa = pasted.split('\r\n');
-    cccc = aaaa[0].split('\t');
+    pasted = pasted.trim('\r\n');
+    bbbb = pasted.split('\r\n');
+    cccc = bbbb[0].split('\t');
     //console.log(cccc);
     e.stopPropagation();
     e.preventDefault();    
@@ -132,13 +137,23 @@
   }
   var kk = $this.closest('td').index();
   var mm = $this.closest('td').length;
+  var verrown = $this.closest('tr').index();
+  var obj = {};
   console.log("선택된 td주소 - input:"+kk+"클립보드 col수"+cccc.length);
  var limit_td = 4;
   if((kk+(cccc.length - 1)) > limit_td){
     alert('복사할 데이터가 셀보다 큽니다.');
     return false;
   } else {
-      
+      $.each(pasted.split('\r\n'), function(indy, valuy){
+            $.each(valuy.split('\t'),function(indx, valux){
+                var row = verrown+indy, col = kk+indx;
+                        obj['cell-'+row+'-'+col] = valux;
+                        $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+') input').val(valux);       
+            });
+      });
+
+      $('#viewprt').text(JSON.stringify(obj));
   }
 
     });
