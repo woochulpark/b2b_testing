@@ -116,7 +116,7 @@
             var cccc;
             var bbbb;
             if (window.clipboardData && window.clipboardData.getData) { 
-        /** IEの場合 */
+        /** ie 용 **/
         pasted = window.clipboardData.getData('Text');
         pasted = pasted.trim('\r\n');
         bbbb = pasted.split('\r\n');
@@ -124,7 +124,7 @@
         e.stopPropagation();
         e.preventDefault();   
     } else if (e.originalEvent.clipboardData.getData) {
-        /** それ以外の場合 */
+        /** 그이외 **/
         
         pasted = e.originalEvent.clipboardData.getData('text/plain');
         pasted = pasted.trim('\r\n');
