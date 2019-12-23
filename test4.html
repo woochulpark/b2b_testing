@@ -14,6 +14,7 @@
   </style>
  </head>
  <body>
+    <form method="post" action="a.php">
   <div>
       <table id="b2b_multi" class="table">
           <thead>
@@ -26,6 +27,7 @@
               <th>플랜</th>
               <th>보험료</th>
           </thead>
+          
           <tbody>
             <tr>
                 <td><input type="checkbox" name="nob[]"></td>
@@ -99,14 +101,32 @@
             </tr>    
           </tbody>      
       </table>
+    
   </div>
   <div class="row">
-      <div class="col-sm-2"><button id="plusbt">증가</button></div>
-      <div class="col-sm-2"><button id="allbt">전체선택</button></div>
-      <div class="col-sm-2"><button id="allnbt">전체해제</button></div>
-      <div class="col-sm-2"><button id="seldbt">선택삭제</button></div>
-      <div class="col-sm-2"><button id="calbt">나이계산</button></div>
+      <div class="col-sm-2"><button type="button" id="plusbt">증가</button type="button"></div>
+      <div class="col-sm-2"><button type="button" id="allbt">전체선택</button></div>
+      <div class="col-sm-2"><button type="button" id="allnbt">전체해제</button></div>
+      <div class="col-sm-2"><button type="button" id="seldbt">선택삭제</button></div>
+      <div class="col-sm-2"><button type="button" id="calbt">나이계산</button></div>
+      <div class="col-sm-2"><button type="submit" id="">전송</button></div>
   </div>
+</form>
+  <table id="b2b_clone" style="display:none;">
+    <tbody>
+        <tr>
+            <td><input type="checkbox" name="nob[]"></td>
+            <td></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text" name="juminno[]" value=""></td>
+            <td><input type="hidden" name="hage[]" value=""></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+    </tbody>
+  </table>
+
  </body>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -114,11 +134,13 @@ $(document).ready(function(){
         
         //var copy_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
         for(i=0; i < 30; i++){
-            var copy_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
+            var copy_tr = $('#b2b_clone').find('tbody tr:eq(0)').clone();
+            /*
         copy_tr.find('input').val('');
        copy_tr.find('input[type="checkbox"]').prop('checked',false);
        copy_tr.find('input[name="juminno[]"]').val();
        copy_tr.find('td').eq(5).contents().filter(function(){return this.nodeType == 3}).remove();
+    */
         $('#b2b_multi').append(copy_tr);
     }
         prt_no();
@@ -175,10 +197,12 @@ $(document).ready(function(){
             var repair_tr = ch_re_cnt;
            
             for(i=0; i < repair_tr; i++){
-                var copy_cre_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
+                var copy_cre_tr = $('#b2b_clone').find('tbody tr:eq(0)').clone();
+                /*
                 copy_cre_tr.find('input').val('');
                 copy_cre_tr.find('td').eq(5).contents().filter(function(){return this.nodeType == 3}).remove();
                 copy_cre_tr.find('input[type="checkbox"]').prop('checked',false);
+                */
                 $('#b2b_multi').append(copy_cre_tr);    
             }
 
@@ -196,10 +220,10 @@ $(document).ready(function(){
 			if(data.msg){			
 				//location.replace(data.Locate);
                 console.log(data.msg['1']);
-                $('input[name="juminno[]').eq(ind).closest('td').next('td').contents().filter(function(){return this.nodeType == 3}).remove();    
+                $('input[name="juminno[]').eq(ind).closest('td').next('td').contents().filter(function(){return this.nodeType == 3}).remove().end();    
 
-                $('input[name="juminno[]').eq(ind).closest('td').next('td').append(data.msg['1']);    
-                $('input[name="juminno[]').eq(ind).closest('td').next('td').children('input').val(data.msg['1']); 
+                $('input[name="juminno[]').eq(ind).closest('td').next('td').append(data.msg['1']).end();    
+                $('input[name="juminno[]').eq(ind).closest('td').next('td').children('input').val(data.msg['1']).end(); 
 			} else {
 				alert('안됐다');
 			}			
