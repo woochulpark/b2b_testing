@@ -50,9 +50,9 @@
             <tr>
                 <td><input type="checkbox" name="nob[]"></td>
                 <td>3</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -60,9 +60,9 @@
             <tr>
                 <td><input type="checkbox" name="nob[]"></td>
                 <td>4</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -70,9 +70,9 @@
             <tr>
                 <td><input type="checkbox" name="nob[]"></td>
                 <td>5</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -80,9 +80,9 @@
             <tr>
                 <td><input type="checkbox" name="nob[]"></td>
                 <td>6</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -90,9 +90,9 @@
             <tr>
                 <td><input type="checkbox" name="nob[]"></td>
                 <td>7</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -101,10 +101,10 @@
       </table>
   </div>
   <div>
-      <div class="col-sm-2"><button id="plusbt">증가</button></div>
-      <div class="col-sm-2"><button id="allbt">전체선택</button></div>
-      <div class="col-sm-2"><button id="allnbt">전체해제</button></div>
-      <div class="col-sm-2"><button id="seldbt">선택삭제</button></div>
+      <div class="col-sm-2"><button type="button" id="plusbt">증가</button type="button"></div>
+      <div class="col-sm-2"><button type="button" id="allbt">전체선택</button></div>
+      <div class="col-sm-2"><button type="button" id="allnbt">전체해제</button></div>
+      <div class="col-sm-2"><button type="button" id="seldbt">선택삭제</button></div>
   </div>
  </body>
 <script type="text/javascript">
@@ -178,23 +178,78 @@ $(document).ready(function(){
         prt_no();
     });
 
-    $('input').on('paste', function(e){
-        alert('되냐');
-        var $this = $(this);        
-        var copy_this = $this.closest('td').index();
-        var limit_col = 4;
-        var cnt_limit = 0;
-        for(i=copy_this; i <= limit_col; i++){
-            cnt_limit++;
-        }
+    //$('input').on('paste',function(e){ 
+        /*일반적으로 function을 실행 시키고 싶다면 
+        위의 on을 
+        동적(clone)으로 생성하는 경우라면 아래처럼
+    */    
+    $(document).on('paste', 'input', function(e){
+            var $this= $(this);
+            var pasted;
+            var cccc;
+            var bbbb;
+            if (window.clipboardData && window.clipboardData.getData) { 
+        /** ie 용 **/
+        pasted = window.clipboardData.getData('Text');
+        pasted = pasted.trim('\r\n');
+        bbbb = pasted.split('\r\n');
+        cccc = bbbb[0].split('\t');
+        e.stopPropagation();
+        e.preventDefault();   
+    } else if (e.originalEvent.clipboardData.getData) {
+        /** 그이외 **/
         
-        var clipCnt = cnt_clip(e);
-        console.log(clipCnt);
-        if(clipCnt > cnt_limit){
-            alert('복사할 데이터가 영역보다 큽니다.');
+        pasted = e.originalEvent.clipboardData.getData('text/plain');
+        pasted = pasted.trim('\r\n');
+        bbbb = pasted.split('\r\n');
+        cccc = bbbb[0].split('\t');
+        //console.log(cccc);
+        e.stopPropagation();
+        e.preventDefault();    
+        
+    }
+    var kk = $this.closest('td').index();
+    var mm = $this.closest('td').length;
+    var verrown = $this.closest('tr').index();
+    var obj = {};
+    console.log("선택된 td주소 - input:"+kk+"클립보드 col수"+cccc.length);
+    var limit_td = 4;
+    if((kk+(cccc.length - 1)) > limit_td){
+        alert('복사할 데이터가 셀보다 큽니다.');
+        return false;
+    } else {        
+        var rejectno = 0;
+        $.each(pasted.split('\r\n'), function(indy, valuy){
+                $.each(valuy.split('\t'),function(indx, valux){
+                    var row = verrown+indy, col = kk+indx;
+                            obj['cell-'+row+'-'+col] = valux;
+                            valux = valux.trim();
+                            $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+') input').val(valux);     
+
+                            if(col == 4){
+                                console.log('지정된 col : '+ju_chk(valux));
+
+                                if( ju_chk(valux) < 1){
+                                    age_calcultor(valux, row, col);  
+                                    $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+')').css('border', '');
+                                } else {
+                                    $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+')').css('border', '1px dotted red');
+                                    $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+(col+1)+') input').val('');
+                                    rejectno = rejectno + 1;
+                                }
+                            }
+                             
+                });
+        });
+        if(rejectno > 0){
+            alert('적합하지않는 주민번호가 있습니다.');
             return false;
-        }
-    });
+        }    
+        $('#viewprt').text(JSON.stringify(obj));
+      
+    }
+
+        });
 
 });
 
@@ -209,28 +264,72 @@ function prt_no(){
 
 }
 
-function cnt_clip(kind){
-    //var cp_column = new Array();
-    var cp_hcolumn;
-    var yarr;
-    var harr;
-    var aaa=0;
-    $.each(kind.originalEvent.clipboardData.items, function(ind, val){
-        if(val.type === 'text/plain'){
-            val.getAsString(function(text){
-                
-                text = text.trim('\r\n');
-                yarr = text.split('\r\n');
-                harr = yarr[0].split('\t');
-                //console.log("row : "+yarr.length+" col : "+harr.length);               
-                alert(harr.length);
-                aaa = harr.length;
-                return aaa;
-            });
-        }
+function age_calcultor(kind,rown, coln){
         
-    });    
-    
-}
+        var cage;
+       // $('input[name="juminno[]"]').each(function(ind, vale){
+            //cage = $(vale).attr('value');
+            cage = kind;
+            
+            //var result_age = cage.split("-");
+
+            $.post('./age_cal.php', {tyear:cage}, function (data){			
+            if(data.msg){			
+                //location.replace(data.Locate);
+                console.log(data.msg['1']);
+                //$('input[name="juminno[]').eq(coln).closest('td').next('td').contents().filter(function(){return this.nodeType == 3}).remove().end();    
+
+                //$('input[name="juminno[]').eq(coln).closest('td').next('td').append(data.msg['1']).end();    
+                //$('input[name="juminno[]').eq(coln).closest('td').next('td').children('input').val(data.msg['1']).end(); 
+                $('#b2b_multi').find('tr:eq('+(rown+1)+') td:eq('+(coln+1)+') input').val(data.msg['1']).end(); 
+            } else {
+                alert('안됐다');
+            }			
+
+            },"json").done(function(){
+            
+            
+            }).fail(function(){
+            
+            });
+        //});
+    }
+
+    function ju_chk(kind){
+        var junum = kind.split("-");
+        var jumins3 = junum[0]+junum[1];
+         //주민등록번호 생년월일 전달
+          var fmt = RegExp(/^\d{6}[1234]\d{6}$/);//포멧 설정
+          var buf = new Array(13); 
+          var errorcnt = 0;
+          //주민번호 유효성 검사 
+          if (!fmt.test(jumins3)) { 
+              //alert("주민등록번호 형식에 맞게 입력해주세요");
+               //$("#id_num").focus(); 
+               //return false; 
+               errorcnt  = errorcnt + 1;
+               console.log("에러 1"+errorcnt);
+            } 
+            
+            //주민번호 존재 검사 
+        for (var i = 0; i < buf.length; i++){
+             buf[i] = parseInt(jumins3.charAt(i)); 
+        } 
+        
+        var multipliers = [2,3,4,5,6,7,8,9,2,3,4,5];// 밑에 더해주는 12자리 숫자들
+         var sum = 0; 
+         for (var i = 0; i < 12; i++){
+              sum += (buf[i] *= multipliers[i]);// 배열끼리12번 돌면서 
+        }
+
+        if ((11 - (sum % 11)) % 10 != buf[12]) { 
+            //alert("잘못된 주민등록번호 입니다.");
+            //$("#id_num").focus();
+             //return false; 
+             errorcnt  = errorcnt + 1;
+             console.log("에러 2"+errorcnt);
+        }
+        return errorcnt;
+    }
 </script>
 </html>
