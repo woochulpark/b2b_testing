@@ -1,161 +1,204 @@
-<!doctype html>
-<html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
-  <title>Document</title>
-  <script type="text/javascript" src="/js/jquery.1.12.4.min.js"></script>
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <style>
-      input,td {width:12.8em;}      
-  </style>
- </head>
- <body>
-  <div>
-      <table id="b2b_multi">
-          <thead>
-              <th>선택</th>
-              <th>번호</th>
-              <th>이름</th>
-              <th>영문이름</th>
-              <th>주민등록번호</th>
-              <th>(만)나이</th>
-              <th>플랜</th>
-              <th>보험료</th>
-          </thead>
-          <tbody>
-            <tr>
-                <td><input type="checkbox" name="nob[]"></td>
-                <td>1</td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" name="nob[]"></td> 
-                <td>2</td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" name="nob[]"></td>
-                <td>3</td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" name="nob[]"></td>
-                <td>4</td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" name="nob[]"></td>
-                <td>5</td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" name="nob[]"></td>
-                <td>6</td>
-                <td><input type="text" value="" ></td>
-                <td><input type="text" value="" ></td>
-                <td><input type="text" value="" ></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" name="nob[]"></td>
-                <td>7</td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>    
-          </tbody>      
-      </table>
-  </div>
-  <div id="viewprt"></div>
-  <div>
-      <div class="col-sm-2"><button id="plusbt">증가</button></div>
-      <div class="col-sm-2"><button id="allbt">전체선택</button></div>
-      <div class="col-sm-2"><button id="allnbt">전체해제</button></div>
-      <div class="col-sm-2"><button id="seldbt">선택삭제</button></div>
-  </div>
- </body>
-<script type="text/javascript">
+    <!doctype html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>Document</title>
+    <script type="text/javascript" src="/js/jquery.1.12.4.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        input,td {width:12.8em;}      
+    </style>
+    </head>
+    <body>
+    <div>
+        <table id="b2b_multi">
+            <thead>
+                <th>선택</th>
+                <th>번호</th>
+                <th>이름</th>
+                <th>영문이름</th>
+                <th>주민등록번호</th>
+                <th>(만)나이</th>
+                <th>플랜</th>
+                <th>보험료</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" name="nob[]"></td>
+                    <td>1</td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" name="juminno[]" value=""></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="nob[]"></td> 
+                    <td>2</td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" name="juminno[]" value=""></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="nob[]"></td>
+                    <td>3</td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" name="juminno[]" value=""></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="nob[]"></td>
+                    <td>4</td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" name="juminno[]" value=""></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="nob[]"></td>
+                    <td>5</td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" name="juminno[]" value=""></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="nob[]"></td>
+                    <td>6</td>
+                    <td><input type="text" value="" ></td>
+                    <td><input type="text" value="" ></td>
+                    <td><input type="text" name="juminno[]" value="" ></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="nob[]"></td>
+                    <td>7</td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" value=""></td>
+                    <td><input type="text" name="juminno[]" value=""></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>    
+            </tbody>      
+        </table>
+    </div>
+    <div id="viewprt"></div>
+    <div>
+        <div class="col-sm-2"><button id="plusbt">증가</button></div>
+        <div class="col-sm-2"><button id="allbt">전체선택</button></div>
+        <div class="col-sm-2"><button id="allnbt">전체해제</button></div>
+        <div class="col-sm-2"><button id="seldbt">선택삭제</button></div>
+    </div>
+    </body>
+    <script type="text/javascript">
 
-    $('input').on('paste',function(e){
-        var $this= $(this);
-        var pasted;
-        var cccc;
-        var bbbb;
-        if (window.clipboardData && window.clipboardData.getData) { 
-    /** IEの場合 */
-    pasted = window.clipboardData.getData('Text');
-    pasted = pasted.trim('\r\n');
-    bbbb = pasted.split('\r\n');
-    cccc = bbbb[0].split('\t');
-    e.stopPropagation();
-    e.preventDefault();   
-  } else if (e.originalEvent.clipboardData.getData) {
-    /** それ以外の場合 */
-    
-    pasted = e.originalEvent.clipboardData.getData('text/plain');
-    pasted = pasted.trim('\r\n');
-    bbbb = pasted.split('\r\n');
-    cccc = bbbb[0].split('\t');
-    //console.log(cccc);
-    e.stopPropagation();
-    e.preventDefault();    
-    
-  }
-  var kk = $this.closest('td').index();
-  var mm = $this.closest('td').length;
-  var verrown = $this.closest('tr').index();
-  var obj = {};
-  console.log("선택된 td주소 - input:"+kk+"클립보드 col수"+cccc.length);
- var limit_td = 4;
-  if((kk+(cccc.length - 1)) > limit_td){
-    alert('복사할 데이터가 셀보다 큽니다.');
-    return false;
-  } else {
-      $.each(pasted.split('\r\n'), function(indy, valuy){
-            $.each(valuy.split('\t'),function(indx, valux){
-                var row = verrown+indy, col = kk+indx;
-                        obj['cell-'+row+'-'+col] = valux;
-                        $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+') input').val(valux);       
-            });
-      });
+        $('input').on('paste',function(e){
+            var $this= $(this);
+            var pasted;
+            var cccc;
+            var bbbb;
+            if (window.clipboardData && window.clipboardData.getData) { 
+        /** IEの場合 */
+        pasted = window.clipboardData.getData('Text');
+        pasted = pasted.trim('\r\n');
+        bbbb = pasted.split('\r\n');
+        cccc = bbbb[0].split('\t');
+        e.stopPropagation();
+        e.preventDefault();   
+    } else if (e.originalEvent.clipboardData.getData) {
+        /** それ以外の場合 */
+        
+        pasted = e.originalEvent.clipboardData.getData('text/plain');
+        pasted = pasted.trim('\r\n');
+        bbbb = pasted.split('\r\n');
+        cccc = bbbb[0].split('\t');
+        //console.log(cccc);
+        e.stopPropagation();
+        e.preventDefault();    
+        
+    }
+    var kk = $this.closest('td').index();
+    var mm = $this.closest('td').length;
+    var verrown = $this.closest('tr').index();
+    var obj = {};
+    console.log("선택된 td주소 - input:"+kk+"클립보드 col수"+cccc.length);
+    var limit_td = 4;
+    if((kk+(cccc.length - 1)) > limit_td){
+        alert('복사할 데이터가 셀보다 큽니다.');
+        return false;
+    } else {
+        
+        var fmt = RegExp(/^\d{6}[1234]\d{6}$/) //포멧 설정
+        var buf = new Array(13);            
 
-      $('#viewprt').text(JSON.stringify(obj));
-  }
+        $.each(pasted.split('\r\n'), function(indy, valuy){
+                $.each(valuy.split('\t'),function(indx, valux){
+                    var row = verrown+indy, col = kk+indx;
+                            obj['cell-'+row+'-'+col] = valux;
+                            valux = valux.trim();
+                            $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+') input').val(valux);     
 
-    });
-</script>
-</html>
+                            if(col == 4){
+                                console.log('지정된 col : '+col);
+                                age_calcultor(valux, row, col);  
+                            }
+                             
+                });
+        });
+
+        $('#viewprt').text(JSON.stringify(obj));
+      
+    }
+
+        });
+
+        function age_calcultor(kind,rown, coln){
+        
+            var cage;
+           // $('input[name="juminno[]"]').each(function(ind, vale){
+                //cage = $(vale).attr('value');
+                cage = kind;
+                
+                //var result_age = cage.split("-");
+
+                $.post('./age_cal.php', {tyear:cage}, function (data){			
+                if(data.msg){			
+                    //location.replace(data.Locate);
+                    console.log(data.msg['1']);
+                    //$('input[name="juminno[]').eq(coln).closest('td').next('td').contents().filter(function(){return this.nodeType == 3}).remove().end();    
+
+                    //$('input[name="juminno[]').eq(coln).closest('td').next('td').append(data.msg['1']).end();    
+                    //$('input[name="juminno[]').eq(coln).closest('td').next('td').children('input').val(data.msg['1']).end(); 
+                    $('#b2b_multi').find('tr:eq('+(rown+1)+') td:eq('+(coln+1)+') input').val(data.msg['1']).end(); 
+                } else {
+                    alert('안됐다');
+                }			
+
+                },"json").done(function(){
+                
+                
+                }).fail(function(){
+                
+                });
+            //});
+        }
+    </script>
+    </html>
