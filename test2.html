@@ -231,9 +231,9 @@ $(document).ready(function(){
 
                                 if( ju_chk(valux) < 1){
                                     age_calcultor(valux, row, col);  
-                                    $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+')').css('border', '');
+                                    $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+') input').css('color', 'black');
                                 } else {
-                                    $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+')').css('border', '1px dotted red');
+                                    $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+col+') input').css('color', 'red');
                                     $this.closest('table').find('tr:eq('+(row+1)+') td:eq('+(col+1)+') input').val('');
                                     rejectno = rejectno + 1;
                                 }
