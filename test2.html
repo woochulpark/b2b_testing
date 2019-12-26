@@ -152,10 +152,13 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $('#plusbt').on('click',function(){
-        
+                var last_for_prt = $('#b2b_multi').find('tbody tr td input[type="checkbox"]').length;
+                console.log(last_for_prt);
                //var copy_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
                for(i=0; i < 30; i++){
             var copy_tr = $('#b2b_clone').find('tbody tr:eq(0)').clone();
+            copy_tr.find('input[type="checkbox"]').attr('id', 'n'+(i+(last_for_prt+1)));
+            copy_tr.find('label').attr('for','n'+(i+(last_for_prt+1)));
             /*
         copy_tr.find('input').val('');
        copy_tr.find('input[type="checkbox"]').prop('checked',false);
