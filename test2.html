@@ -10,7 +10,11 @@
   <script type="text/javascript" src="/js/jquery.1.12.4.min.js"></script>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <style>
-      input,td {width:12.8em;}      
+      input,td {width:12.8em;}       
+#b2b_multi input[type="checkbox"] {display:none;}
+#b2b_multi input[type="checkbox"] + .check_bx span {display:inline-block; width:20px; height:20px; -webkit-appearance: none; -moz-appearance: none; -o-appearance: none; appearance:none; outline: none; box-shadow: none; vertical-align:middle; background:url(../img/common/rc_sheet.png) -40px top no-repeat; cursor:pointer; }
+#b2b_multi input[type="checkbox"]:checked + .check_bx span { width:20px; height:20px; -webkit-appearance: none; -moz-appearance: none; -o-appearance: none; appearance:none; box-shadow: none; background:url(../img/common/rc_sheet.png) -60px top no-repeat;}
+#b2b_multi select {width:100%; height:28px; padding:0 10px; box-sizing:border-box;}   
   </style>
  </head>
  <body>
@@ -28,72 +32,93 @@
           </thead>
           <tbody>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n1" name="nob[]">
+                    <label for="n1" class="check_bx"><span></span></label>
+                </td>
                 <td>1</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td> 
+                <td>
+                    <input type="checkbox" id="n2" name="nob[]">
+                    <label for="n2" class="check_bx"><span></span></label>
+                </td> 
                 <td>2</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n3" name="nob[]">
+                    <label for="n3" class="check_bx"><span></span></label>
+                </td>
                 <td>3</td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="juminno[]" value=""></td>
-                <td><input type="text"></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n4" name="nob[]">
+                    <label for="n4" class="check_bx"><span></span></label>
+                </td>
                 <td>4</td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="juminno[]" value=""></td>
-                <td><input type="text"></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n5" name="nob[]">
+                    <label for="n5" class="check_bx"><span></span></label>
+                </td>
                 <td>5</td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="juminno[]" value=""></td>
-                <td><input type="text"></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n6" name="nob[]">
+                    <label for="n6" class="check_bx"><span></span></label>
+                </td>
                 <td>6</td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="juminno[]" value=""></td>
-                <td><input type="text"></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n7" name="nob[]">
+                    <label for="n8" class="check_bx"><span></span></label>
+                </td>
                 <td>7</td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="" value=""></td>
                 <td><input type="text" name="juminno[]" value=""></td>
-                <td><input type="text"></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
             </tr>    
@@ -106,15 +131,39 @@
       <div class="col-sm-2"><button type="button" id="allnbt">전체해제</button></div>
       <div class="col-sm-2"><button type="button" id="seldbt">선택삭제</button></div>
   </div>
+  <table id="b2b_clone" style="display:none;">
+    <tbody>
+        <tr>
+            <td>
+                <input type="checkbox"  name="nob[]">
+                <label  class="check_bx"><span></span></label>
+            </td>
+            <td></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text" name="juminno[]" value=""></td>
+            <td><input type="hidden" name="hage[]" value=""></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+    </tbody>
+  </table>
  </body>
 <script type="text/javascript">
 $(document).ready(function(){
     $('#plusbt').on('click',function(){
         
-        var copy_tr = $('#b2b_multi').find('tbody tr:lt(3)').clone();
+               //var copy_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
+               for(i=0; i < 30; i++){
+            var copy_tr = $('#b2b_clone').find('tbody tr:eq(0)').clone();
+            /*
         copy_tr.find('input').val('');
        copy_tr.find('input[type="checkbox"]').prop('checked',false);
+       copy_tr.find('input[name="juminno[]"]').val();
+       copy_tr.find('td').eq(5).contents().filter(function(){return this.nodeType == 3}).remove();
+    */
         $('#b2b_multi').append(copy_tr);
+    }
         prt_no();
     });
 
