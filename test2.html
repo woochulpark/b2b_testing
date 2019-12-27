@@ -376,8 +376,10 @@ function age_calcultor(kind,rown, coln){
 
                 //$('input[name="juminno[]').eq(coln).closest('td').next('td').append(data.msg['1']).end();    
                 //$('input[name="juminno[]').eq(coln).closest('td').next('td').children('input').val(data.msg['1']).end(); 
-                $('#b2b_multi').find('tr:eq('+(rown+1)+') td:eq('+(coln+1)+') input').val(data.msg['1']).end(); 
-                $('#b2b_multi').find('tr:eq('+(rown+1)+') td:eq('+(coln+1)+')').text(data.msg['1']);
+                
+                $('#b2b_multi').find('tr:eq('+(rown+1)+') td:eq('+(coln+1)+')').contents().filter(function(){return this.nodeType == 3}).remove();
+                $('#b2b_multi').find('tr:eq('+(rown+1)+') td:eq('+(coln+1)+') input[name="hage[]"]').val(data.msg['1']); 
+                $('#b2b_multi').find('tr:eq('+(rown+1)+') td:eq('+(coln+1)+')').append(data.msg['1']);
             } else {
                 alert('안됐다');
             }			
