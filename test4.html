@@ -10,8 +10,12 @@
   <script type="text/javascript" src="/js/jquery.1.12.4.min.js"></script>
   <link rel="stylesheet" href="/css/bootstrap.min.css"> 
   <style>
-      input,td {width:12.8em;}      
-  </style>
+    input,td {width:12.8em;}       
+#b2b_multi input[type="checkbox"] {display:none;}
+#b2b_multi input[type="checkbox"] + .check_bx span {display:inline-block; width:20px; height:20px; -webkit-appearance: none; -moz-appearance: none; -o-appearance: none; appearance:none; outline: none; box-shadow: none; vertical-align:middle; background:url(../img/common/rc_sheet.png) -40px top no-repeat; cursor:pointer; }
+#b2b_multi input[type="checkbox"]:checked + .check_bx span { width:20px; height:20px; -webkit-appearance: none; -moz-appearance: none; -o-appearance: none; appearance:none; box-shadow: none; background:url(../img/common/rc_sheet.png) -60px top no-repeat;}
+#b2b_multi select {width:100%; height:28px; padding:0 10px; box-sizing:border-box;}   
+</style>
  </head>
  <body>
     <form method="post" action="a.php">
@@ -30,7 +34,10 @@
           
           <tbody>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n1" name="nob[]">
+                    <label for="n1" class="check_bx"><span></span></label>
+                </td>
                 <td>1</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -40,7 +47,10 @@
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td> 
+                <td>
+                    <input type="checkbox" id="n2" name="nob[]">
+                    <label for="n2" class="check_bx"><span></span></label>
+                </td> 
                 <td>2</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -50,7 +60,10 @@
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n3" name="nob[]">
+                    <label for="n3" class="check_bx"><span></span></label>
+                </td>
                 <td>3</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -60,7 +73,10 @@
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n4" name="nob[]">
+                    <label for="n4" class="check_bx"><span></span></label>
+                </td>
                 <td>4</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -70,7 +86,10 @@
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n5" name="nob[]">
+                    <label for="n5" class="check_bx"><span></span></label>
+                </td>
                 <td>5</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -80,7 +99,10 @@
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n6" name="nob[]">
+                    <label for="n6" class="check_bx"><span></span></label>
+                </td>
                 <td>6</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -90,7 +112,10 @@
                 <td><input type="text"></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="nob[]"></td>
+                <td>
+                    <input type="checkbox" id="n7" name="nob[]">
+                    <label for="n7" class="check_bx"><span></span></label>
+                </td>
                 <td>7</td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
