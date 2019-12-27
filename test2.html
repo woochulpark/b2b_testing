@@ -18,6 +18,7 @@
   </style>
  </head>
  <body>
+    <form method="post" action="a.php">
   <div>
       <table id="b2b_multi" class="table">
           <thead>
@@ -121,7 +122,46 @@
                 <td><input type="hidden" name="hage[]" value=""></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
-            </tr>    
+            </tr> 
+            <tr>
+                <td>
+                    <input type="checkbox" id="n8" name="nob[]">
+                    <label for="n8" class="check_bx"><span></span></label>
+                </td>
+                <td>8</td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="n9" name="nob[]">
+                    <label for="n9" class="check_bx"><span></span></label>
+                </td>
+                <td>9</td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>     
+            <tr>
+                <td>
+                    <input type="checkbox" id="n10" name="nob[]">
+                    <label for="n10" class="check_bx"><span></span></label>
+                </td>
+                <td>10</td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="" value=""></td>
+                <td><input type="text" name="juminno[]" value=""></td>
+                <td><input type="hidden" name="hage[]" value=""></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>     
           </tbody>      
       </table>
   </div>
@@ -130,7 +170,9 @@
       <div class="col-sm-2"><button type="button" id="allbt">전체선택</button></div>
       <div class="col-sm-2"><button type="button" id="allnbt">전체해제</button></div>
       <div class="col-sm-2"><button type="button" id="seldbt">선택삭제</button></div>
+      <div class="col-sm-2"><button type="submit" id="">전송</button></div>
   </div>
+</form>
   <table id="b2b_clone" style="display:none;">
     <tbody>
         <tr>
