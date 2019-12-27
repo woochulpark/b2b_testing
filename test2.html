@@ -19,7 +19,7 @@
  </head>
  <body>
   <div>
-      <table id="b2b_multi">
+      <table id="b2b_multi" class="table">
           <thead>
               <th>선택</th>
               <th>번호</th>
@@ -221,9 +221,9 @@ $(document).ready(function(){
             var repair_tr = ch_re_cnt;
            
             for(i=0; i < repair_tr; i++){
-                var copy_cre_tr = $('#b2b_multi').find('tbody tr:eq(0)').clone();
-                copy_cre_tr.find('input').val('');
-                copy_cre_tr.find('input[type="checkbox"]').prop('checked',false);
+                var copy_cre_tr = $('#b2b_clone').find('tbody tr:eq(0)').clone();
+                //copy_cre_tr.find('input').val('');
+                //copy_cre_tr.find('input[type="checkbox"]').prop('checked',false);
                 $('#b2b_multi').append(copy_cre_tr);    
             }
 
@@ -335,6 +335,7 @@ function age_calcultor(kind,rown, coln){
                 //$('input[name="juminno[]').eq(coln).closest('td').next('td').append(data.msg['1']).end();    
                 //$('input[name="juminno[]').eq(coln).closest('td').next('td').children('input').val(data.msg['1']).end(); 
                 $('#b2b_multi').find('tr:eq('+(rown+1)+') td:eq('+(coln+1)+') input').val(data.msg['1']).end(); 
+                $('#b2b_multi').find('tr:eq('+(rown+1)+') td:eq('+(coln+1)+')').text(data.msg['1']);
             } else {
                 alert('안됐다');
             }			
