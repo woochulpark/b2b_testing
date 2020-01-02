@@ -246,11 +246,13 @@ $(document).ready(function(){
             });
         } else {
             var remove_no = new Array();
+            
             $('input[name="nob[]"]').each(function(ind,val){  
                 
                 if($('input[name="nob[]"]').eq(ind).is(':checked')){                     
                     ch_re_cnt++;  
                     //$('input[name="nob[]"]:checked').closest('tr').remove();
+               
                     remove_no.push(ind); 
                 }        
             });
@@ -265,7 +267,7 @@ $(document).ready(function(){
             for(i=0; i < repair_tr; i++){
                 var copy_cre_tr = $('#b2b_clone').find('tbody tr:eq(0)').clone();
                 //copy_cre_tr.find('input').val('');
-                //copy_cre_tr.find('input[type="checkbox"]').prop('checked',false);
+                copy_cre_tr.find('input[type="checkbox"]').prop('checked',false);
                 $('#b2b_multi').append(copy_cre_tr);    
             }
 
@@ -354,6 +356,8 @@ function prt_no(){
     $('#b2b_multi tr').each(function(ind){
        
         $('#b2b_multi tbody tr:eq('+ind+') td:eq(1)').text(cnt);
+        $('#b2b_multi tbody tr:eq('+ind+') td:eq(0) input[name="nob[]"]').attr("id","n"+cnt);
+        $('#b2b_multi tbody tr:eq('+ind+') td:eq(0) label').attr("for","n"+cnt);
         cnt++;
     });
 
