@@ -375,7 +375,7 @@ function age_calcultor(kind,rown, coln){
             $.post('./age_cal.php', {tyear:cage}, function (data){			
             if(data.msg){			
                 //location.replace(data.Locate);
-                console.log(data.msg['1']);
+                console.log(data.msg['1']+' : '+data.msg['0']);
                 //$('input[name="juminno[]').eq(coln).closest('td').next('td').contents().filter(function(){return this.nodeType == 3}).remove().end();    
 
                 //$('input[name="juminno[]').eq(coln).closest('td').next('td').append(data.msg['1']).end();    
@@ -410,7 +410,7 @@ function age_calcultor(kind,rown, coln){
                //$("#id_num").focus(); 
                //return false; 
                errorcnt  = errorcnt + 1;
-               console.log("에러 1"+errorcnt);
+               //console.log("에러 1"+errorcnt);
             } 
             
             //주민번호 존재 검사 
@@ -429,9 +429,30 @@ function age_calcultor(kind,rown, coln){
             //$("#id_num").focus();
              //return false; 
              errorcnt  = errorcnt + 1;
-             console.log("에러 2"+errorcnt);
+            // console.log("에러 2"+errorcnt);
         }
         return errorcnt;
     }
+
+    $('input[name="juminno[]"]').on('keyup, change, keydown, input',function(){
+        //console.log('나왔다'+ju_chk($(this).val()));
+        if(ju_chk($(this).val()) < 1){
+            //console.log("에러 cnt"+ju_chk($(this).val()));
+            //console.log('나왔다'+ju_chk($(this).val()));
+            var put_td_po = $(this).closest('td').index();
+            var put_tr_po = $(this).closest('tr').index();
+            age_calcultor($(this).val(), put_tr_po, put_td_po);
+        } else {
+            console.log($(this).val());
+            if($(this).val() == ''){
+                
+                var put_td_po1 = $(this).closest('td').index();    
+                var put_tr_po1 = $(this).closest('tr').index();        
+                console.log("row:"+put_tr_po1+" col:"+(put_td_po1+1));                    
+                $('#b2b_multi').find('tr:eq('+(put_tr_po1+1)+') td:eq('+(put_td_po1+1)+') input[name="hage[]"]').val('');
+                $('#b2b_multi').find('tr:eq('+(put_tr_po1+1)+') td:eq('+(put_td_po1+1)+')').contents().filter(function(){return this.nodeType == 3}).remove();
+            }    
+        }
+    });
 </script>
 </html>
