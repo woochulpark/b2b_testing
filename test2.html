@@ -19,7 +19,19 @@
  </head>
  <body>
      <div>
+         <label style="float:left">여행기간 </label>
+         <div style="float:left">
          <input type="text" name="start_day" value=""/> ~ <input type="text" name="end_day" value="" />
+         </div>
+         <label style="float:left;padding:0px 20px 0px 20px">플랜</label>
+         <div class="col-sm-2 control-label">
+            <button type="button" id="tplan">공통 플랜</button>            
+         </div>
+         <label style="float:left">
+            여행지역
+        </label>
+        <div style="float:left"><input type="radio" name="nation_area" value="해외" checked><label style="float:left">해외</label></div>
+        <div style="float:left"><input type="radio" name="nation_area" value="국내"><label style="float:left">국내</label></div>
      </div>
     <form method="post" action="a.php">
   <div>
@@ -350,6 +362,11 @@ $(document).ready(function(){
     }
 
         });
+
+    $('#tplan').on('click',function(){
+        //'플랜버튼'
+
+    });
 
 });
 
