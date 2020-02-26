@@ -1,0 +1,38 @@
+var property = $("input[name=com_file_img]")[0].files[0];	
+var form_data = new FormData($('form[name=joinb2b]')[0]);
+		form_data.append('fileObj',property);
+			
+//위와 같이 작성되어 있는 form을 formdata로 생성해놓고 거기에 fileobj에 property를 추가 한다.
+//jquery ajax에서 파일 업로드를 할때 
+
+		$.ajax({
+			type : "POST",
+			dataType:'text',
+			url : "../src/member_process.php",			
+			contentType:false,
+          cache:false,
+          processData:false,
+			data : form_data,
+			success : function(data, status)
+			{
+				var json = eval("(" + data + ")");
+
+				if (json.result=="true") {
+					location.href="complete.php?uid="+json.msg;
+					$("#loading_area").delay(100).fadeOut();
+					return false;
+				} else {
+					alert(json.msg);
+					$("#loading_area").delay(100).fadeOut();
+					return false;
+				}
+				
+			},
+			error : function(err)
+			{
+				alert(err.responseText);
+				$("#loading_area").delay(100).fadeOut();
+				return false;
+			}
+		});
+	}
